@@ -54,7 +54,7 @@ require="__directory/home/$cdistuser/.ssh"  __file \
     "/home/$cdistuser/.ssh/config" \
     --source "$__type/files/dot-sshrc" \
     --owner "$cdistuser" \
-    --state "$sshcrcstate"
+    --state "$sshrcstate"
 
 # Not yet supported
 # gitrepo=$(cat "$__object/parameter/dot-cdist-git-repo")
