@@ -37,7 +37,7 @@ require="__package/$shell" __user --create-home \
     --state "$state"
 
 require="__user/$cdistuser" __file "/home/$cdistuser/$rcfile" \
-    --source "$__type/files/dot-$shell" --owner "$cdistuser" \
+    --source "$__type/files/dot-${shell" --owner "$cdistuser" \
     --mode 0600 \
     --state "$state"
 
