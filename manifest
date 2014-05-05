@@ -40,11 +40,11 @@ require="__user/$cdistuser" __file "/home/$cdistuser/$rcfile" \
 
 require="__user/$cdistuser" __git "/home/$cdistuser/cdist" \
     --owner "$cdistuser" \
-    --source "$srcrepo"
+    --source "$srcrepo" \
     --state "$state"
 
 require="__user/$cdistuser" __directory "/home/$cdistuser/.ssh" \
-    --owner "$cdistuser" --mode 0600
+    --owner "$cdistuser" --mode 0600 \
     --state "$state"
 
 require="__directory/home/$cdistuser/.ssh"  __file \
