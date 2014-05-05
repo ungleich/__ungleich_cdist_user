@@ -33,7 +33,7 @@ esac
 __package "$shell"
 
 require="__package/$shell" __user --create-home \
-    --shell "$shell" "$cdistuser" \
+    --shell "/bin/$shell" "$cdistuser" \
     --state "$state"
 
 require="__user/$cdistuser" __file "/home/$cdistuser/$rcfile" \
