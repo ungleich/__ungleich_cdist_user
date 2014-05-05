@@ -1,5 +1,6 @@
 cdistuser=$__object_id
 shell=$(cat "$__object/parameter/shell")
+state=$(cat "$__object/parameter/state")
 srcrepo=git://github.com/telmich/cdist.git
 
 case "$shell" in
