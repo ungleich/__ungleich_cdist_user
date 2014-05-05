@@ -29,6 +29,9 @@ case "$state" in
     ;;
 esac
 
+
+__package "$shell"
+
 require="__package/$shell" __user --create-home \
     --shell "$shell" "$cdistuser" \
     --state "$state"
