@@ -1,0 +1,11 @@
+# Do not ask for every new host
+StrictHostKeyChecking no
+
+# Speedup cdist
+Compression yes
+ControlPath ~/.ssh/master-%l-%r@%h:%p
+ControlMaster auto
+ControlPersist 600
+
+# In case we need to hop two hosts
+ForwardAgent yes

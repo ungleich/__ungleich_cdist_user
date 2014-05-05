@@ -1,0 +1,61 @@
+cdistuser=$__object_id
+shell=$(cat "$__object/parameter/shell")
+srcrepo=git://github.com/telmich/cdist.git
+
+case "$shell" in
+    bash)
+        rcfile=.bash_profile
+    ;;
+    zsh)
+        rcfile=.zshrc
+    ;;
+    *)
+        echo "Unsupported shell: $shell" >&2
+        exit 1
+    ;;
+esac
+
+case "$state" in
+    present)
+        sshrcstate=exists
+    ;;
+    absent)
+        sshrcstate=absent
+    ;;
+    *)
+        echo "Unsupported state: $state" >&2
+        exit 1
+    ;;
+esac
+
+require="__package/$shell" __user --create-home \
+    --shell "$shell" "$cdistuser" \
+    --state "$state"
+
+require="__user/$cdistuser" __file "/home/$cdistuser/$rcfile" \
+    --source "$__type/files/dot-$shell" --owner "$cdistuser" \
+    --mode 0600 \
+    --state "$state"
+
+require="__user/$cdistuser" __git "/home/$cdistuser/cdist" \
+    --owner "$cdistuser" \
+    --source "$srcrepo"
+    --state "$state"
+
+require="__user/$cdistuser" __directory "/home/$cdistuser/.ssh" \
+    --owner "$cdistuser" --mode 0600
+    --state "$state"
+
+require="__directory/home/$cdistuser/.ssh"  __file \
+    "/home/$cdistuser/.ssh/config" \
+    --source "$__type/files/dot-sshrc" \
+    --owner "$cdistuser" \
+    --state "$sshcrcstate"
+
+# Not yet supported
+# gitrepo=$(cat "$__object/parameter/dot-cdist-git-repo")
+# cdist cannot deploy anything that is named .cdist ...
+#    require="__user/$cdistuser" __git /home/$cdistuser/.cdist \
+#        --owner "$cdistuser" \
+#        --source git@git.ungleich.ch:dot-cdist \
+#        --branch "$cdistuser"

@@ -1,0 +1,7 @@
+#
+# file is configured using cdist - do not change
+#
+
+export PATH=$PATH:$HOME/cdist/bin
+export PATH=$PATH:$HOME/cinv/bin
+export PATH=$PATH:$HOME/ungleich-bin
