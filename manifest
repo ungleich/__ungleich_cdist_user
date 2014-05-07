@@ -46,15 +46,22 @@ require="__user/$cdistuser" __git "/home/$cdistuser/cdist" \
     --source "$srcrepo" \
     --state "$state"
 
-require="__user/$cdistuser" __directory "/home/$cdistuser/.ssh" \
-    --owner "$cdistuser" --mode 0600 \
-    --state "$state"
-
-require="__directory/home/$cdistuser/.ssh"  __file \
+__file \
     "/home/$cdistuser/.ssh/config" \
     --source "$__type/files/dot-sshrc" \
     --owner "$cdistuser" \
     --state "$sshrcstate"
+
+
+# require="__user/$cdistuser" __directory "/home/$cdistuser/.ssh" \
+#     --owner "$cdistuser" --mode 0600 \
+#     --state "$state"
+# 
+# require="__directory/home/$cdistuser/.ssh"  __file \
+#     "/home/$cdistuser/.ssh/config" \
+#     --source "$__type/files/dot-sshrc" \
+#     --owner "$cdistuser" \
+#     --state "$sshrcstate"
 
 # Not yet supported
 # gitrepo=$(cat "$__object/parameter/dot-cdist-git-repo")
