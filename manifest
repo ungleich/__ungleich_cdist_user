@@ -52,7 +52,6 @@ __file \
     --owner "$cdistuser" \
     --state "$sshrcstate"
 
-require="__user/$cdistuser" __ungleich_ssh_keys "$cdistuser"
 
 # require="__user/$cdistuser" __directory "/home/$cdistuser/.ssh" \
 #     --owner "$cdistuser" --mode 0600 \
