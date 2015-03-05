@@ -33,8 +33,8 @@ esac
 __package "$shell"
 
 require="__package/$shell" __user --create-home \
-    --shell "/bin/$shell" "$cdistuser" \
-    --state "$state"
+    --shell "/bin/$shell" --state "$state" \
+    "$cdistuser"
 
 require="__user/$cdistuser" __file "/home/$cdistuser/$rcfile" \
     --source "$__type/files/dot-${shell}" --owner "$cdistuser" \
@@ -46,7 +46,8 @@ require="__user/$cdistuser" __git "/home/$cdistuser/cdist" \
     --source "$srcrepo" \
     --state "$state"
 
-require="__user/$cdistuser" __ssh_dot_ssh "$cdistuser"
+require="__user/$cdistuser" __ssh_dot_ssh "$cdistuser" \
+    --state "$state"
 
 require="__ssh_dot_ssh/$cdistuser" __file \
     "/home/$cdistuser/.ssh/config" \
